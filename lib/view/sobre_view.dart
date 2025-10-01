@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projeto/view/sobre_view.dart';
 import '../controller/login_controller.dart';
 import '../model/user_model.dart';
 import 'cadastro_view.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SobrePage extends StatefulWidget {
+  const SobrePage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SobrePage> createState() => _SobrePageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SobrePageState extends State<SobrePage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final LoginController _controller = LoginController();
@@ -51,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "LOGIN",
+                  "Sobre o Aplicativo",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -70,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("E-mail", style: TextStyle(color: Colors.white)),
+                const Text("O que é o EventoOn?", style: TextStyle(color: Colors.white)),
                 const SizedBox(height: 5),
                 TextField(
                   controller: _emailController,
@@ -148,17 +147,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SobrePage()),
-                      );
-                    },
-
-                    /*onPressed: () {
-                      UserModel user = UserModel(
-                      );*/
-
-                    /*onPressed: () {
                       UserModel user = UserModel(
                         email: _emailController.text,
                         password: _passwordController.text,
@@ -174,7 +162,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       );
                     },
-                    */
                     child: const Text(
                       "Entrar",
                       style: TextStyle(

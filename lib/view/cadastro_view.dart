@@ -62,7 +62,7 @@ class _CadastroState extends State<Cadastro> {
 
           const SizedBox(height: 30),
 
-         // Campos de login
+          // Campos de login
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
@@ -84,6 +84,24 @@ class _CadastroState extends State<Cadastro> {
                 ),
                 const SizedBox(height: 20),
                 const Text("Senha", style: TextStyle(color: Colors.white)),
+                const SizedBox(height: 5),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.red.shade900,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                const SizedBox(height: 20),
+
+                const SizedBox(height: 20),
+                const Text("Telefone", style: TextStyle(color: Colors.white)),
                 const SizedBox(height: 5),
                 TextField(
                   controller: _passwordController,
