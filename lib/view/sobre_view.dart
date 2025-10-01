@@ -11,15 +11,12 @@ class SobrePage extends StatefulWidget {
 }
 
 class _SobrePageState extends State<SobrePage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final LoginController _controller = LoginController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Cabeçalho vermelho
           Container(
@@ -29,17 +26,11 @@ class _SobrePageState extends State<SobrePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                /*
-                Icon(Icons.hexagon, size: 80, color: Colors.black),
-                SizedBox(height: 10),
-                
-                */
                 Image(
                   image: AssetImage("lib/image/logo.png"),
                   width: 150,
                   height: 150,
                 ),
-
                 Text(
                   "EVENTOON",
                   style: TextStyle(
@@ -61,162 +52,29 @@ class _SobrePageState extends State<SobrePage> {
             ),
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
 
-          // Campos de login
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("O que é o EventoOn?", style: TextStyle(color: Colors.white)),
-                const SizedBox(height: 5),
-                TextField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.red.shade900,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  style: const TextStyle(color: Colors.white),
+          // Corpo do texto sobre o aplicativo
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: const Text(
+                "O aplicativo Eventoon nasceu com o propósito de centralizar todos os "
+                "eventos de Ribeirão Preto em um único lugar. Nosso objetivo é "
+                "facilitar a forma como as pessoas descobrem e acessam os eventos "
+                "de sua preferência, de maneira rápida, prática e organizada — "
+                "sem a necessidade de buscar informações dispersas em diferentes "
+                "canais, como WhatsApp, Instagram, entre outros.\n\n"
+                "Mais do que reunir eventos, buscamos conectar pessoas, "
+                "promover encontros e contribuir para reduzir a sensação de "
+                "solidão que tem se tornado cada vez mais presente em nossa sociedade.",
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 16,
+                  height: 1.5,
                 ),
-                const SizedBox(height: 20),
-                const Text("Senha", style: TextStyle(color: Colors.white)),
-                const SizedBox(height: 5),
-                TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.red.shade900,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  style: const TextStyle(color: Colors.white),
-                ),
-                const SizedBox(height: 20),
-
-                // Login social
-                const Center(
-                  child: Text("ou", style: TextStyle(color: Colors.white70)),
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.g_mobiledata, size: 40, color: Colors.white),
-                    SizedBox(width: 15),
-                    Icon(Icons.facebook, size: 30, color: Colors.blue),
-                    SizedBox(width: 15),
-                    Icon(Icons.camera_alt, size: 30, color: Colors.pink),
-                  ],
-                ),
-
-                const SizedBox(height: 15),
-
-                Center(
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.white),
-                      foregroundColor: Colors.white,
-                    ),
-                    onPressed: () {
-                      _controller.forgotPassword(_emailController.text);
-                    },
-                    child: const Text("Esqueceu a senha ?"),
-                  ),
-                ),
-
-                const SizedBox(height: 20),
-
-                // Botão entrar
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-
-                    onPressed: () {
-                      UserModel user = UserModel(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      );
-
-                      bool logged = _controller.login(user);
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            logged ? "Login bem-sucedido!" : "Falha no login!",
-                          ),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      "Entrar",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-              ],
-            ),
-          ),
-
-          // Rodapé cadastrar
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            decoration: const BoxDecoration(
-              border: Border(top: BorderSide(color: Colors.white24)),
-            ),
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onPressed: () {
-                      /*ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Ir para cadastro..."),
-                        ),
-                      );*/
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Cadastro()),
-                      );
-                    },
-                    child: const Text(
-                      "Cadastrar",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                textAlign: TextAlign.justify,
+              ),
             ),
           ),
         ],
